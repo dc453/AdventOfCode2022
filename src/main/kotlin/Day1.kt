@@ -4,9 +4,13 @@ fun main() {
 
     val input = File("src/main/inputs/Day1.txt")
         .readText()
-    val highestCalorieAmount = calculateTotalCaloriesForAll(input).max()
+    val caloriesByElf = calculateTotalCaloriesForAll(input)
+
+    val highestCalorieAmount = caloriesByElf.max()
     println("Day 1, part 1: $highestCalorieAmount")
 
+    val totalCaloriesOfTop3 = calculateTopCalories(caloriesByElf)
+    println("Day 1, part 2: $totalCaloriesOfTop3")
 }
 
 fun calculateTotalCalories(caloriesList: List<Int>): Int {
@@ -20,4 +24,10 @@ fun calculateTotalCaloriesForAll(input: String): List<Int> {
                 .map { calories -> calories.toInt()}
             calculateTotalCalories(caloriesList)
         }
+}
+
+fun calculateTopCalories(caloriesList: List<Int>): Int {
+    return caloriesList.sortedDescending()
+        .slice(0..2)
+        .sum()
 }

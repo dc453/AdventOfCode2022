@@ -27,8 +27,15 @@ class Day1_Tests {
 
     @Test
     fun shouldParseTotalCaloriesForEachElf() {
-        val parsedElfCarries = calculateTotalCaloriesForAll(input)
-        assertEquals(listOf(6000, 4000,11000, 24000, 10000), parsedElfCarries)
+        val parsedElfCalories = calculateTotalCaloriesForAll(input)
+        assertEquals(listOf(6000, 4000,11000, 24000, 10000), parsedElfCalories)
+    }
+
+    @Test
+    fun shouldCalculateCaloriesOfTop3() {
+        val parsedElfCalories = calculateTotalCaloriesForAll(input)
+        val topElfCalories = calculateTopCalories(parsedElfCalories)
+        assertEquals(45000, topElfCalories)
     }
 
 }

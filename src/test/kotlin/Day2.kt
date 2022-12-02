@@ -84,4 +84,67 @@ class Day2_Tests {
         assertEquals(15, totalScore)
     }
 
+    @Test
+    fun whenDecryptingOutcomes_shouldLose_whenX_andPlayer2ChoosesRock() {
+        val input = "A X"
+        val totalScore = playAllRounds(input, true)
+        assertEquals(3, totalScore)
+    }
+
+    @Test
+    fun whenDecryptingOutcomes_shouldLose_whenX_andPlayer2ChoosesPaper() {
+        val input = "B X"
+        val totalScore = playAllRounds(input, true)
+        assertEquals(1, totalScore)
+    }
+
+    @Test
+    fun whenDecryptingOutcomes_shouldLose_whenX_andPlayer2ChoosesScissors() {
+        val input = "C X"
+        val totalScore = playAllRounds(input, true)
+        assertEquals(2, totalScore)
+    }
+
+    @Test
+    fun whenDecryptingOutcomes_shouldTie_whenY_andPlayer2ChoosesRock() {
+        val input = "A Y"
+        val totalScore = playAllRounds(input, true)
+        assertEquals(4, totalScore)
+    }
+
+    @Test
+    fun whenDecryptingOutcomes_shouldTie_whenY_andPlayer2ChoosesPaper() {
+        val input = "B Y"
+        val totalScore = playAllRounds(input, true)
+        assertEquals(5, totalScore)
+    }
+
+    @Test
+    fun whenDecryptingOutcomes_shouldTie_whenY_andPlayer2ChoosesScissors() {
+        val input = "C Y"
+        val totalScore = playAllRounds(input, true)
+        assertEquals(6, totalScore)
+    }
+
+    @Test
+    fun whenDecryptingOutcomes_shouldWin_whenZ_andPlayer2ChoosesRock() {
+        val input = "A Z"
+        val totalScore = playAllRounds(input, true)
+        assertEquals(8, totalScore)
+    }
+
+    @Test
+    fun whenDecryptingOutcomes_shouldWin_whenZ_andPlayer2ChoosesPaper() {
+        val input = "B Z"
+        val totalScore = playAllRounds(input, true)
+        assertEquals(9, totalScore)
+    }
+
+    @Test
+    fun whenDecryptingOutcomes_shouldWin_whenZ_andPlayer2ChoosesScissors() {
+        val input = "C Z"
+        val totalScore = playAllRounds(input, true)
+        assertEquals(7, totalScore)
+    }
+
 }

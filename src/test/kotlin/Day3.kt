@@ -3,15 +3,15 @@ import kotlin.test.assertEquals
 
 class Day3_Tests {
 
+    var input = "vJrwpWtwJgWrhcsFMMfFFhFp\n" +
+            "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\n" +
+            "PmmdzqPrVvPwwTWBwg\n" +
+            "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\n" +
+            "ttgJtRGJQctTZtZT\n" +
+            "CrZsJsPPZsGzwwsLwLmpwMDw"
+
     @Test
     fun createRucksacks_shouldDetermineItemsInEachCompartment() {
-        val input = "vJrwpWtwJgWrhcsFMMfFFhFp\n" +
-                "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\n" +
-                "PmmdzqPrVvPwwTWBwg\n" +
-                "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\n" +
-                "ttgJtRGJQctTZtZT\n" +
-                "CrZsJsPPZsGzwwsLwLmpwMDw"
-
         val rucksacks = RucksackOrganizer(input).rucksacks
 
         assertEquals("vJrwpWtwJgWr", rucksacks[0].compartments[0])
@@ -22,7 +22,7 @@ class Day3_Tests {
 
     @Test
     fun Rucksack_shouldDetermineWhichItemAppearsInBothCompartments() {
-        val input = "vJrwpWtwJgWrhcsFMMfFFhFp"
+        input = "vJrwpWtwJgWrhcsFMMfFFhFp"
         val rucksack = Rucksack(input)
 
         val duplicateItem = rucksack.getDuplicateItem()
@@ -31,27 +31,24 @@ class Day3_Tests {
     }
 
     @Test
-    fun Rucksack_shouldCalculateDuplicateItemScore() {
-        val input = "vJrwpWtwJgWrhcsFMMfFFhFp"
-        val rucksack = Rucksack(input)
-
-        val priorityScore = rucksack.getPriorityScore()
-
-        assertEquals(16, priorityScore)
+    fun RucksackOrganizer_shouldCalculateAllItemScores() {
+        val rucksackOrganizer = RucksackOrganizer(input)
+        val totalPriorityScore = rucksackOrganizer.getTotalPriorityScore()
+        assertEquals(157, totalPriorityScore)
     }
 
     @Test
-    fun RucksackOrganizer_shouldCalculateAllItemScores() {
-        val input = "vJrwpWtwJgWrhcsFMMfFFhFp\n" +
-                "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\n" +
-                "PmmdzqPrVvPwwTWBwg\n" +
-                "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\n" +
-                "ttgJtRGJQctTZtZT\n" +
-                "CrZsJsPPZsGzwwsLwLmpwMDw"
-
+    fun RucksackOrganizer_shouldDetermineElfGroupBadges() {
         val rucksackOrganizer = RucksackOrganizer(input)
+        val elfGroups = rucksackOrganizer.elfGroups
+        assertEquals(listOf('r', 'Z'), elfGroups)
+    }
 
-        assertEquals(157, rucksackOrganizer.getTotalPriorityScore())
+    @Test
+    fun RucksackOrganizer_shouldCalculateTotalGroupItemScores() {
+        val rucksackOrganizer = RucksackOrganizer(input)
+        val totalGroupPriorityScore = rucksackOrganizer.getTotalGroupPriorityScore()
+        assertEquals(70, totalGroupPriorityScore)
     }
 
 }

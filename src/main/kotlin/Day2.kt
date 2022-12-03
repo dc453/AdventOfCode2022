@@ -20,6 +20,11 @@ private const val WIN_SCORE = 6
 private const val TIE_SCORE = 3
 private const val LOSE_SCORE = 0
 
+private val commandValues = mapOf<Enum<RPS>, Int>(
+    RPS.ROCK to 1,
+    RPS.PAPER to 2,
+    RPS.SCISSORS to 3
+)
 private val player2CommandKeys = mapOf<String, Enum<RPS>>(
     "A" to RPS.ROCK,
     "B" to RPS.PAPER,
@@ -33,14 +38,7 @@ private val player1CommandKeys = mapOf<String, Enum<RPS>>(
 
 
 fun playRound(player1Choice: Enum<RPS>?, player2Choice: Enum<RPS>?): Int {
-    var score = LOSE_SCORE
-
-    score += when (player1Choice) {
-        RPS.ROCK -> 1
-        RPS.PAPER -> 2
-        RPS.SCISSORS -> 3
-        else -> LOSE_SCORE
-    }
+    var score = commandValues.getOrDefault(player1Choice, 0)
     score += when (player1Choice) {
         RPS.ROCK -> when (player2Choice) {
             RPS.SCISSORS -> WIN_SCORE
@@ -69,27 +67,7 @@ fun playAllRounds(input: String, enableOutcomeMode: Boolean = false): Int {
         val playerCommands = roundInput.split(" ")
         val player2Choice = player2CommandKeys[playerCommands[0]]
         val player1Choice = if (enableOutcomeMode) {
-            when (playerCommands[1]) {
-                "X" -> when (player2Choice) {
-                    RPS.ROCK -> RPS.SCISSORS
-                    RPS.PAPER -> RPS.ROCK
-                    RPS.SCISSORS -> RPS.PAPER
-                    else -> null
-                }
-                "Y" -> when (player2Choice) {
-                    RPS.ROCK -> RPS.ROCK
-                    RPS.PAPER -> RPS.PAPER
-                    RPS.SCISSORS -> RPS.SCISSORS
-                    else -> null
-                }
-                "Z" -> when(player2Choice) {
-                    RPS.ROCK -> RPS.PAPER
-                    RPS.PAPER -> RPS.SCISSORS
-                    RPS.SCISSORS -> RPS.ROCK
-                    else -> null
-                }
-                else -> null
-            }
+            determinePlayerChoiceByOutcome(playerCommands[1], player2Choice)
         } else {
             player1CommandKeys[playerCommands[1]]
         }
@@ -100,3 +78,26 @@ fun playAllRounds(input: String, enableOutcomeMode: Boolean = false): Int {
     }
     return score
 }
+
+private fun determinePlayerChoiceByOutcome(encryptedOutcome: String, player2Choice: Enum<RPS>?) =
+    when (encryptedOutcome) {
+        "X" -> when (player2Choice) {
+            RPS.ROCK -> RPS.SCISSORS
+            RPS.PAPER -> RPS.ROCK
+            RPS.SCISSORS -> RPS.PAPER
+            else -> null
+        }
+        "Y" -> when (player2Choice) {
+            RPS.ROCK -> RPS.ROCK
+            RPS.PAPER -> RPS.PAPER
+            RPS.SCISSORS -> RPS.SCISSORS
+            else -> null
+        }
+        "Z" -> when (player2Choice) {
+            RPS.ROCK -> RPS.PAPER
+            RPS.PAPER -> RPS.SCISSORS
+            RPS.SCISSORS -> RPS.ROCK
+            else -> null
+        }
+        else -> null
+    }

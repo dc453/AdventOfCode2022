@@ -6,6 +6,7 @@ fun main() {
         .readText()
     val cleanupScheduler = CleanupScheduler(input)
     println("Day 4, part 1: ${cleanupScheduler.getNumberOfGroupsWithFullyContainedAssignments()}")
+    println("Day 4, part 1: ${cleanupScheduler.getNumberOfOverlappingAssignments()}")
 
 }
 
@@ -28,6 +29,16 @@ class CleanupScheduler(input: String) {
     fun getNumberOfGroupsWithFullyContainedAssignments(): Int {
         return groups.filter {
             checkGroupForFullyContainedAssignments(it)
+        }.size
+    }
+
+    fun checkOverlappingAssignments(group: List<List<Int>>): Boolean {
+        return (group[0] intersect group[1].toSet()).isNotEmpty()
+    }
+
+    fun getNumberOfOverlappingAssignments(): Int {
+        return groups.filter {
+            checkOverlappingAssignments(it)
         }.size
     }
 

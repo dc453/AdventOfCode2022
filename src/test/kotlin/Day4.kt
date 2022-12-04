@@ -43,4 +43,22 @@ class Day4_Tests {
         assertEquals(2, result)
     }
 
+    @Test
+    fun CleanupScheduler_shouldIdentifyWhenAssignmentsOverlap() {
+        val cleanupScheduler = CleanupScheduler(input)
+
+        val notOverlappingResult = cleanupScheduler.checkOverlappingAssignments(cleanupScheduler.groups[1])
+        val overlappingResult = cleanupScheduler.checkOverlappingAssignments(cleanupScheduler.groups[2])
+
+        assertEquals(false, notOverlappingResult)
+        assertEquals(true, overlappingResult)
+    }
+
+    @Test
+    fun CleanupScheduler_shouldCalculateTotalNumberOfOverlappingAssignments() {
+        val cleanupScheduler = CleanupScheduler(input)
+        val result = cleanupScheduler.getNumberOfOverlappingAssignments()
+        assertEquals(4, result)
+    }
+
 }

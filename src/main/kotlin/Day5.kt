@@ -54,16 +54,6 @@ class CargoCrane(input: String, private val enableMultipleCrateMode: Boolean = f
         supplyStacks.map { it.reverse() }
     }
 
-    fun arrangeStacks() {
-        instructions.forEach { instruction ->
-            if (enableMultipleCrateMode) {
-                moveMultipleCrates(instruction)
-            } else {
-                moveCrate(instruction)
-            }
-        }
-    }
-
     private fun moveMultipleCrates(instruction: List<Int>) {
         val crates = supplyStacks[instruction[1] - 1].takeLast(instruction[0])
         supplyStacks[instruction[2] - 1].addAll(crates)
@@ -76,6 +66,16 @@ class CargoCrane(input: String, private val enableMultipleCrateMode: Boolean = f
         for (i in 1..instruction[0]) {
             val crate = supplyStacks[instruction[1] - 1].removeLast()
             supplyStacks[instruction[2] - 1].add(crate)
+        }
+    }
+
+    fun arrangeStacks() {
+        instructions.forEach { instruction ->
+            if (enableMultipleCrateMode) {
+                moveMultipleCrates(instruction)
+            } else {
+                moveCrate(instruction)
+            }
         }
     }
 

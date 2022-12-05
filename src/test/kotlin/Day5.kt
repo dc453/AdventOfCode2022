@@ -54,4 +54,18 @@ class Day5_Tests {
         assertEquals("CMZ", result)
     }
 
+    @Test
+    fun CargoCrane_whenModel9001_shouldArrangeMultipleCratesAtOnce() {
+        val cargoCrane = CargoCrane(input, true)
+
+        cargoCrane.arrangeStacks()
+
+        val expected = listOf<List<String>>(
+            listOf("M"),
+            listOf("C"),
+            listOf("P", "Z", "N", "D")
+        )
+        assertEquals(expected, cargoCrane.supplyStacks)
+    }
+
 }

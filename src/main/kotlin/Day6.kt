@@ -16,24 +16,17 @@ class CommunicationSystem {
         val datastreamCharacters = datastream.split("")
             .filter { it.isNotEmpty() }
         datastreamCharacters.forEachIndexed { index, character ->
-            if (enableFullMessageSearch) {
-                var characterSet = mutableSetOf<String>(character)
-                for (i in 1..13) {
-                    characterSet.add(datastreamCharacters[index + i])
-                }
-                if (characterSet.size == 14) {
-                    return index + 14
-                }
+            val packetSize = if (enableFullMessageSearch) {
+                14
             } else {
-                val characterSet = setOf(
-                    character,
-                    datastreamCharacters[index + 1],
-                    datastreamCharacters[index + 2],
-                    datastreamCharacters[index + 3]
-                )
-                if (characterSet.size == 4) {
-                    return index + 4
-                }
+                4
+            }
+            val characterSet = mutableSetOf(character)
+            for (i in 1 until packetSize) {
+                characterSet.add(datastreamCharacters[index + i])
+            }
+            if (characterSet.size == packetSize) {
+                return index + packetSize
             }
         }
         return -1

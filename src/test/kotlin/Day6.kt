@@ -17,4 +17,18 @@ class Day6_Tests {
         assertEquals(6, result3)
     }
 
+    @Test
+    fun CommunicationSystem_shouldDetermineStartOfNewMessages() {
+        val communicationSystem = CommunicationSystem()
+
+        val result1 = communicationSystem.getStartOfPacket("mjqjpqmgbljsphdztnvjfqwrcgsmlb", true)
+        assertEquals(19, result1)
+
+        val result2 = communicationSystem.getStartOfPacket("bvwbjplbgvbhsrlpgdmjqwftvncz", true)
+        assertEquals(23, result2)
+
+        val result3 = communicationSystem.getStartOfPacket("nppdvjthqldpwncqszvftbrmjlhg", true)
+        assertEquals(23, result3)
+    }
+
 }

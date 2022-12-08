@@ -22,7 +22,6 @@ class Day7_Tests {
         val input = "$ cd a\n" +
                 "dir b"
         val fs = FileSystem(input)
-        println(fs.files)
         assertEquals("a", fs.workingDirectory.name)
         assertEquals("b", fs.workingDirectory.files[0].name)
     }

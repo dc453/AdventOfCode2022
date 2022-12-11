@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
 class Day9_Tests {
@@ -137,7 +138,7 @@ class Day9_Tests {
     @Test
     fun RopeKnot_shouldSaveHistory() {
         val input = "R 4\n" +
-                "U 4\n"
+                "U 4"
         val bridge = RopeBridge()
 
         bridge.move(input)
@@ -148,12 +149,12 @@ class Day9_Tests {
             Point(2, 0),
             Point(3, 0),
             Point(4, 0),
-            Point(1, 1),
-            Point(1, 2),
-            Point(1, 3),
-            Point(1, 4),
+            Point(4, 1),
+            Point(4, 2),
+            Point(4, 3),
+            Point(4, 4)
         )
-        assertEquals(expected, bridge.head.history)
+        assertContentEquals(expected, bridge.head.history.asIterable())
     }
 
     @Test
@@ -170,7 +171,8 @@ class Day9_Tests {
 
         bridge.move(input)
 
-        println(bridge.tail.history)
+        println("head ${bridge.head.history.size} | tail ${bridge.tail.history.size}")
+//        bridge.tail.history.forEach { println(it) }
 
         assertEquals(13, bridge.tail.history.size)
     }

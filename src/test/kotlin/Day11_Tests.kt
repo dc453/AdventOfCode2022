@@ -67,15 +67,73 @@ class Day11_Tests {
     @Test
     fun Monkeys_shouldDetermineWhichMonkeyToThrowTo_whenTestIsTrue() {
         val game = KeepAwayGame(fullInput)
-        val result = game.monkeys[2].getMonkeyToThrowTo()
+        val result = game.monkeys[2].getMonkeyToThrowTo(game.monkeys[2].items[0])
         assertEquals(1, result)
     }
 
     @Test
     fun Monkeys_shouldDetermineWhichMonkeyToThrowTo_whenTestIsFalse() {
         val game = KeepAwayGame(fullInput)
-        val result = game.monkeys[0].getMonkeyToThrowTo()
+        val result = game.monkeys[0].getMonkeyToThrowTo(game.monkeys[0].items[0])
         assertEquals(3, result)
+    }
+
+    @Test
+    fun Monkeys_whenTakingTurn_shouldDetermineWhereItemsWereThrown() {
+        val game = KeepAwayGame(fullInput)
+        val result = game.monkeys[0].takeTurn()
+        assertEquals(listOf(ItemThrow(500, 3), ItemThrow(620, 3)), result)
+    }
+
+    @Test
+    fun Monkeys_whenTakingTurn_shouldClearItemsAfterThrow() {
+        val game = KeepAwayGame(fullInput)
+        game.monkeys[0].takeTurn()
+        assertEquals(true, game.monkeys[0].items.isEmpty())
+    }
+
+    @Test
+    fun Monkeys_whenTakingTurn_shouldCountNumberOfItemsInspected() {
+        val game = KeepAwayGame(fullInput)
+        game.monkeys[0].takeTurn()
+        assertEquals(2, game.monkeys[0].numItemsInspected)
+    }
+
+    @Test
+    fun KeepAwayGame_whenPlayingRound_shouldThrowItems() {
+        val game = KeepAwayGame(fullInput)
+
+        game.playRound()
+
+        assertEquals(listOf(20, 23, 27, 26), game.monkeys[0].items)
+        assertEquals(listOf(2080, 25, 167, 207, 401, 1046), game.monkeys[1].items)
+        assertEquals(true, game.monkeys[2].items.isEmpty())
+        assertEquals(true, game.monkeys[3].items.isEmpty())
+    }
+
+    @Test
+    fun KeepAwayGame_whenPlayingRounds_shouldKeepCountingInspectedItems() {
+        val game = KeepAwayGame(fullInput)
+
+        for (i in 1..20) {
+            game.playRound()
+        }
+
+        assertEquals(101, game.monkeys[0].numItemsInspected)
+        assertEquals(95, game.monkeys[1].numItemsInspected)
+        assertEquals(7, game.monkeys[2].numItemsInspected)
+        assertEquals(105, game.monkeys[3].numItemsInspected)
+    }
+
+    @Test
+    fun KeepAwayGame_whenPlayingRounds_shouldCalculateLevelOfMonkeyBusiness() {
+        val game = KeepAwayGame(fullInput)
+
+        for (i in 1..20) {
+            game.playRound()
+        }
+
+        assertEquals(10605, game.monkeyBusinessLevel)
     }
 
 }

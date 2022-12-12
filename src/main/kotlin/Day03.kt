@@ -2,7 +2,7 @@ import java.io.File
 
 fun main() {
 
-    val input = File("src/main/inputs/Day3.txt")
+    val input = File("src/main/inputs/Day03.txt")
         .readText()
     val rucksackOrganizer = RucksackOrganizer(input)
     println("Day 3, part 1: ${rucksackOrganizer.getTotalPriorityScore()}")

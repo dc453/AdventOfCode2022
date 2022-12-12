@@ -2,7 +2,7 @@ import java.io.File
 
 fun main() {
 
-    val input = File("src/main/inputs/Day1.txt")
+    val input = File("src/main/inputs/Day01.txt")
         .readText()
     val caloriesByElf = calculateTotalCaloriesForAll(input)
 

@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class Day7_Tests {
+class Day07_Tests {
 
     val fullInput = "\$ cd /\n" +
             "\$ ls\n" +

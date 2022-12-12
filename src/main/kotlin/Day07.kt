@@ -2,7 +2,7 @@ import java.io.File
 
 fun main() {
 
-    val input = File("src/main/inputs/Day7.txt")
+    val input = File("src/main/inputs/Day07.txt")
         .readText()
     val fs = FileSystem(input)
     println("Day 7, part 1: ${fs.getTotalSizeOfSmallDirectories()}")

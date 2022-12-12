@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class Day3_Tests {
+class Day03_Tests {
 
     var input = "vJrwpWtwJgWrhcsFMMfFFhFp\n" +
             "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\n" +

@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class Day8_Tests {
+class Day08_Tests {
 
     @Test
     fun TreeHouseSite_shouldCountEdgesAsVisibleTrees() {

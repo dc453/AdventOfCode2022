@@ -2,7 +2,7 @@ import java.io.File
 
 fun main() {
 
-    val input = File("src/main/inputs/Day6.txt")
+    val input = File("src/main/inputs/Day06.txt")
         .readText()
     val communicationSystem = CommunicationSystem()
     println("Day 6, part 1: ${communicationSystem.getStartOfPacket(input)}")

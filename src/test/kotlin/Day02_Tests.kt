@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class Day2_Tests {
+class Day02_Tests {
 
     @Test
     fun playingRound_shouldGive1Point_whenChoosingRock() {

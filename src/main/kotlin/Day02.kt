@@ -2,7 +2,7 @@ import java.io.File
 
 fun main() {
 
-    val input = File("src/main/inputs/Day2.txt")
+    val input = File("src/main/inputs/Day02.txt")
         .readText()
     val totalScore = playAllRounds(input)
     println("Day 2, part 1: $totalScore")

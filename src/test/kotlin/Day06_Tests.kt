@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class Day6_Tests {
+class Day06_Tests {
 
     @Test
     fun CommunicationSystem_shouldDetermineStartOfNewPackets() {

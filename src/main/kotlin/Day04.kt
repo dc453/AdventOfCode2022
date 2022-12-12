@@ -2,7 +2,7 @@ import java.io.File
 
 fun main() {
 
-    val input = File("src/main/inputs/Day4.txt")
+    val input = File("src/main/inputs/Day04.txt")
         .readText()
     val cleanupScheduler = CleanupScheduler(input)
     println("Day 4, part 1: ${cleanupScheduler.getNumberOfGroupsWithFullyContainedAssignments()}")

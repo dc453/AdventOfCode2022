@@ -2,7 +2,7 @@ import java.io.File
 
 fun main() {
 
-    val input = File("src/main/inputs/Day5.txt")
+    val input = File("src/main/inputs/Day05.txt")
         .readText()
 
     val cargoCrane = CargoCrane(input)

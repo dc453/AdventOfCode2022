@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class Day5_Tests {
+class Day05_Tests {
 
     val input = "    [D]    \n" +
                 "[N] [C]    \n" +

@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class Day1_Tests {
+class Day01_Tests {
 
     val input = "1000\n" +
             "2000\n" +

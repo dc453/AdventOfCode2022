@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class Day4_Tests {
+class Day04_Tests {
 
     val input = "2-4,6-8\n" +
             "2-3,4-5\n" +

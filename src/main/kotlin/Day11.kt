@@ -12,17 +12,25 @@ fun main() {
     }
     println("Day 10, part 1: ${game1.monkeyBusinessLevel}")
 
+    val game2 = KeepAwayGame(input, true)
+    for (i in 1..10000) {
+        game2.playRound()
+    }
+    println("Day 10, part 2: ${game2.monkeyBusinessLevel}")
+
 }
 
-class KeepAwayGame(input: String) {
+class KeepAwayGame(input: String, enableExtremeWorryMode: Boolean = false) {
+
+    // TODO
 
     val monkeys = input.split("\n\n")
-        .map { Monkey(it) }
-    val monkeyBusinessLevel: Int
+        .map { Monkey(it, enableExtremeWorryMode) }
+    val monkeyBusinessLevel: Long
         get() {
             val mostActive = monkeys.sortedByDescending { it.numItemsInspected }
                 .take(2)
-                .map { it.numItemsInspected }
+                .map { it.numItemsInspected.toLong() }
             return mostActive[0] * mostActive[1]
         }
 
@@ -39,7 +47,7 @@ class KeepAwayGame(input: String) {
 
 data class ItemThrow(val item: Int, val destination: Int)
 
-class Monkey(input: String) {
+class Monkey(input: String, val enableExtremeWorryMode: Boolean = false) {
 
     private val info = input.split("\n")
         .map { it.trim() }
@@ -74,7 +82,8 @@ class Monkey(input: String) {
             "+" -> formula[0].toInt() + formula[2].toInt()
             else -> currentWorryLevel
         }.toDouble()
-        return floor(newWorryLevel / 3).toInt()
+        val worryLevelModifier = if (enableExtremeWorryMode) 1 else 3
+        return floor(newWorryLevel / worryLevelModifier).toInt()
     }
 
     fun getMonkeyToThrowTo(item: Int): Int {

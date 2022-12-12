@@ -136,4 +136,36 @@ class Day11_Tests {
         assertEquals(10605, game.monkeyBusinessLevel)
     }
 
+    @Test
+    fun KeepAwayGame_whenExtremeWorryModeActive_shouldNotReduceWorryLevels() {
+        val game = KeepAwayGame(fullInput, true)
+        val result = game.monkeys[0].getNewWorryLevel(game.monkeys[0].items[0])
+        assertEquals(1501, result)
+    }
+
+    @Test
+    fun KeepAwayGame_whenPlayingRounds_andExtremeWorryMode_shouldKeepCountingInspectedItems() {
+        val game = KeepAwayGame(fullInput, true)
+
+        for (i in 1..10000) {
+            game.playRound()
+        }
+
+        assertEquals(52166, game.monkeys[0].numItemsInspected)
+        assertEquals(47830, game.monkeys[1].numItemsInspected)
+        assertEquals(1938, game.monkeys[2].numItemsInspected)
+        assertEquals(52013, game.monkeys[3].numItemsInspected)
+    }
+
+    @Test
+    fun KeepAwayGame_whenPlayingRounds_andExtremeWorryMode_shouldCalculateLevelOfMonkeyBusiness() {
+        val game = KeepAwayGame(fullInput, true)
+
+        for (i in 1..10000) {
+            game.playRound()
+        }
+
+        assertEquals(2713310158, game.monkeyBusinessLevel)
+    }
+
 }
